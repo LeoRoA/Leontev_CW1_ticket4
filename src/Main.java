@@ -1,19 +1,29 @@
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
         System.out.println("Задание для курсовой: \n" +
                 "Дан массив строк, необходимо удалить из него все дубли, " +
                 "оставшиеся строки объединить в одну в порядке следования в массиве.");
-        String[] arr = {"arr", "vddd", "arr", "vddd", "aaa", "aaa" };
-        String result = "";
-        for (int i = 0; i < arr.length; i++) {                                                          //проходим по всем элементам массива
-            for (int j = i+1; j < arr.length; j++) {                                                    //еще один цикл для взаимодействия со всеми последующими элементами массива
-                System.out.printf("(arr[%d].equals(arr[%d])) = %b\n",i, j, (arr[i].equals(arr[j])));    //выводим значения сравнение для всего массива
-                if (arr[j].equals(arr[i])){
+        String[] arr = {"arr", "vddd", "arr", "vddd", "aaa", "aaa"};
+        Arrays.sort(arr);                                                                               // Сортируем массив, таким образом все дублирующие значения будут друг за другом
+        int lengthSort = arr.length;                                                                    // т.к. размер массива изменить нельзя, чтобы не вводить новый введем переменную для определения кол-ва пустых элементов
+        for (int i = 0; i < arr.length-1; i++) {                                                          //проходим по всем элементам массива
+            /*for (int j = i + 1; j < arr.length; j++) {                                                    //еще один цикл для взаимодействия со всеми последующими элементами массива
+                System.out.printf("(arr[%d].equals(arr[%d])) = %b\n", i, j, (arr[i].equals(arr[j])));    //выводим значения сравнение для всего массива
+                if (arr[j].equals(arr[i])) {
                     arr[j] = "";                                                                        //для одинаковых 2ую делаем пустой, null нельзя, т.к. будет вызвано исключение
                 }
+            }*/                                                                                         //получаем результующую строку путем склеивания
+            if (arr[i].equals(arr[i + 1])) {                                                            //сравниваем текущий с последующим и аннулируем текущий, это позволит не потерять повторяющиеся, если их больше 2 подряд
+                arr[i] = "";
+                lengthSort--;
             }
-            result=result+arr[i];                                                                       //получаем результующую строку путем склеивания
         }
-        System.out.println("result = " + result);
+        Arrays.sort(arr);                                                                               //сортируем вновь, все пустые занимают первые позиции
+        for (int i = lengthSort-1; i < arr.length; i++)                                                 //выводим поэлементно начиная со следующего за пустым
+            System.out.print(arr[i] + " ");
     }
+    //String result = arr.toString();
+    //System.out.println("result = " + result);
 }
