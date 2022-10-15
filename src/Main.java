@@ -30,7 +30,7 @@ public class Main {
 
         //Вариант 3
         String result3 = "";
-        String arrStr = Arrays.toString(arr);                                                                //переводим весь массив в строку
+        String arrStr = Arrays.toString(arr);                                                               //переводим весь массив в строку
         arrStr = arrStr.replace(" ", "");                                                   //исключаем из строки пробелы
         //System.out.println("Start arrStr = " + arrStr);                                                   //выводим строку на экран
         for (int i = arr.length - 1; i > 0; i--) {                                                          //проходим по всем элементам массива в обратном порядке
